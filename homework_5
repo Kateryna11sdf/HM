@@ -1,0 +1,51 @@
+# Завдання 1
+number = 1002000
+zero_count = str(number).count('0')
+print(zero_count)  # Відповідь: 4
+
+#####################################################
+
+# Завдання 2
+number = 1002000
+trailing_zeros_count = len(str(number)) - len(str(number).rstrip('0'))
+print(trailing_zeros_count)  # Відповідь: 3
+
+#####################################################
+
+# Завдання 3
+my_list = [1, 2, 3, 4]
+new_list = my_list[1:] + my_list[:1]
+print(new_list)  # Відповідь: [2, 3, 4, 1]
+
+#####################################################
+
+# Завдання 4
+
+my_string = "43 більше за 34, але меньше за 56"
+numbers = [int(word) for word in my_string.split() if word.isdigit()]
+sum_numbers = sum(numbers)
+print(sum_numbers)  # Відповідь: 133
+
+#####################################################
+
+# Завдання 5
+
+my_str = 'abcde'
+if len(my_str) % 2 != 0:
+    my_str += '_'
+
+pairs = [my_str[i:i+2] for i in range(0, len(my_str), 2)]
+print(pairs)  # Відповідь: ['ab', 'cd', 'e_']
+
+#####################################################
+
+# Завдання 6
+
+my_list = [2, 4, 1, 5, 3, 9, 0, 7]
+count = 0
+
+for i in range(1, len(my_list) - 1):
+    if my_list[i] > my_list[i - 1] + my_list[i + 1]:
+        count += 1
+
+print(count)  # Відповідь: 3
