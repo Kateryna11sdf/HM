@@ -1,0 +1,52 @@
+# Завдання 1
+
+my_list = [50, 150, 200, 75, 300, 90, 500]
+
+for value in my_list:
+    if value > 100:
+        print(value)
+
+#####################################################
+
+# Завдання 2
+
+my_list = [50, 150, 200, 75, 300, 90, 500]
+my_results = []
+
+for value in my_list:
+    if value > 100:
+        my_results.append(value)
+
+print(my_results)
+
+#####################################################
+
+# Завдання 3
+
+my_list = ["abc", "def", "ghi", "jkl", "mno", "pqr"]
+new_list = []
+
+for index, value in enumerate(my_list):
+    if index % 2 == 0:  # Непарні місця (індексація з 0)
+        new_list.append(value[::-1])
+    else:
+        new_list.append(value)
+
+print(new_list)
+
+#####################################################
+
+# Завдання 4
+# У вас є рядок my_string = '0123456789'.
+# Згенерувати цілі числа (тип int) від 0 до 99 і помістити в список.
+# Завдання потрібно виконати ТІЛЬКИ через цикл у циклі (Див. Приклад вище) і зведення типів !!!
+
+my_string = '0123456789'
+generated_numbers = []
+
+for symb_1 in my_string:
+    for symb_2 in my_string:
+        number = int(symb_1 + symb_2)  # Комбінуємо символи і перетворюємо на int
+        generated_numbers.append(number)
+
+print(generated_numbers)
