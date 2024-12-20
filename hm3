@@ -1,0 +1,49 @@
+
+
+# Задача 1.
+def guess_the_number():
+    goal_number = randint(1, 10)
+    while True:
+        try:
+            user_number = int(input("Enter a number between 1 and 10: "))
+            if user_number < goal_number:
+                print("More")
+            elif user_number > goal_number:
+                print("Less")
+            else:
+                print("You won!")
+                break
+        except ValueError:
+            print("Please enter a valid number.")
+
+# Задача 2.
+def display_month():
+    goal_month = randint(1, 12)
+    months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ]
+    print(goal_month, months[goal_month - 1])
+
+# Задача 3.
+def power_of_numbers():
+    try:
+        first_number = int(input("Enter the base number (integer): "))
+        second_number = int(input("Enter the exponent (integer): "))
+        result = first_number ** second_number
+        print(f"Result: {result}")
+    except ValueError:
+        print("You entered not a valid integer.")
+    except OverflowError:
+        print("The result is too large to compute.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+print("Task 1: Guess the Number")
+guess_the_number()
+
+print("\nTask 2: Display Month")
+display_month()
+
+print("\nTask 3: Power of Numbers")
+power_of_numbers()
