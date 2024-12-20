@@ -1,0 +1,57 @@
+from typing import List, Dict, Tuple
+
+def parse_logs(file_path: str):
+    with open(file_path, 'r') as file:
+        logs = []
+        for line in file:
+            if line.strip():
+                parts = line.split(', ')
+                record = {
+                    "username": parts[0].split(": ")[1],
+                    "email": parts[1].split(": ")[1],
+                    "date_connected": parts[2].split(": ")[1],
+                    "ip": parts[3].split(": ")[1],
+                    "connection_duration": parts[4].split(": ")[1]
+                }
+                logs.append(record)
+        return logs
+
+def get_date_range(logs: List[Dict[str, str]]) -> List[str]:
+    dates = [log["date_connected"].split()[0] for log in logs]
+    return [min(dates), max(dates)]
+
+def count_unique_users(logs: List[Dict[str, str]]) -> int:
+    return len(set(log["username"] for log in logs))
+
+def count_connections_per_user(logs: List[Dict[str, str]]) -> Dict[str, int]:
+    connections = {}
+    for log in logs:
+        user = log["username"]
+        connections[user] = connections.get(user, 0) + 1
+    return connections
+
+def unique_ips_per_user(logs: List[Dict[str, str]]) -> Dict[str, List[str]]:
+    user_ips = {}
+    for log in logs:
+        user = log["username"]
+        ip = log["ip"]
+        if user not in user_ips:
+            user_ips[user] = set()
+        user_ips[user].add(ip)
+    return {user: list(ips) for user, ips in user_ips.items()}
+
+def count_unique_ips_per_user(user_ips: Dict[str, List[str]]) -> Dict[str, int]:
+    return {user: len(ips) for user, ips in user_ips.items()}
+
+def calculate_total_connection_time(logs: List[Dict[str, str]]) -> Dict[str, int]:
+    def duration_to_seconds(duration: str) -> int:
+        h, m, s = map(int, duration.split(":"))
+        return h * 3600 + m * 60 + s
+    
+    total_time = {}
+    for log in logs:
+        user = log["username"]
+        duration = duration_to_seconds(log["connection_duration"])
+        total_time[user] = total_time.get(user, 0) + duration
+    return total_time
+
